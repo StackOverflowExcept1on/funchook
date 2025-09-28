@@ -13,10 +13,19 @@ else
   GENERATOR_TYPE=single_config
 fi
 
-if test "`uname -m`" = aarch64 -o "`uname -m`" = arm64; then
+if [ "`uname -m`" = "aarch64" ] || [ "`uname -m`" = "arm64" ]; then
   DISASM_BACKENDS="capstone"
 else
-  DISASM_BACKENDS="distorm zydis capstone"
+  for arg in "$@"; do
+    if [ "$arg" = "ARM64" ]; then
+      DISASM_BACKENDS="capstone"
+      break
+    fi
+  done
+
+  if [ -z "$DISASM_BACKENDS" ]; then
+    DISASM_BACKENDS="distorm zydis capstone"
+  fi
 fi
 
 message() {
@@ -49,7 +58,7 @@ build_and_test() {
 for disasm in $DISASM_BACKENDS; do
   case "$GENERATOR_TYPE" in
     multi_config)
-      mkdir test-$dir-$disasm
+      mkdir -p test-$dir-$disasm
       cd test-$dir-$disasm
       message "cmake (using $disasm as disassembler)"
       echodo cmake "$@" -DFUNCHOOK_DISASM=$disasm ..
@@ -58,13 +67,13 @@ for disasm in $DISASM_BACKENDS; do
       cd ..
       ;;
     single_config)
-      mkdir test-$dir-$disasm-release
+      mkdir -p test-$dir-$disasm-release
       cd test-$dir-$disasm-release
       message "cmake Release (using $disasm as disassembler)"
       echodo cmake -DCMAKE_BUILD_TYPE=Release "$@" -DFUNCHOOK_DISASM=$disasm ..
       build_and_test Release
       cd ..
-      mkdir test-$dir-$disasm-debug
+      mkdir -p test-$dir-$disasm-debug
       cd test-$dir-$disasm-debug
       message "cmake Debug (using $disasm as disassembler)"
       echodo cmake -DCMAKE_BUILD_TYPE=Debug "$@" -DFUNCHOOK_DISASM=$disasm ..
