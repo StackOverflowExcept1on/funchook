@@ -1,7 +1,7 @@
 Funchook - an API hook library
 ==============================
 
-[![tests](https://github.com/kubo/funchook/actions/workflows/run-tests.yml/badge.svg?branch=master)](https://github.com/kubo/funchook/actions/workflows/run-tests.yml)
+[![tests](https://github.com/StackOverflowExcept1on/funchook/actions/workflows/run-tests.yml/badge.svg?branch=master)](https://github.com/StackOverflowExcept1on/funchook/actions/workflows/run-tests.yml)
 
 This library depends on one of the following disassemblers.
 
@@ -98,10 +98,11 @@ Compilation and installation
 ### Unix
 
 ```shell
-$ git clone --recursive https://github.com/kubo/funchook.git
-$ mkdir build
+$ git clone --recursive https://github.com/StackOverflowExcept1on/funchook.git
+$ cd funchook
+$ mkdir -p build
 $ cd build
-$ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/path/to/install/directory ../funchook
+$ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/path/to/install/directory ..
 $ make
 $ make install
 ```
@@ -122,10 +123,11 @@ Here is an example to compile funchook with Visual Studio 2017 Win64.
 Change the argument of `-G` to use other compilers.
 
 ```shell
-$ git clone --recursive https://github.com/kubo/funchook.git
+$ git clone --recursive https://github.com/StackOverflowExcept1on/funchook.git
+$ cd funchook
 $ mkdir build
 $ cd build
-$ cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=c:\path\to\install\directory ..\funchook
+$ cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=c:\path\to\install\directory ..
 $ cmake --build . --config Release --target INSTALL
 ```
 

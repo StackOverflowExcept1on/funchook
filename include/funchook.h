@@ -1,6 +1,6 @@
 /*
  * This file is part of Funchook.
- * https://github.com/kubo/funchook
+ * https://github.com/StackOverflowExcept1on/funchook
  *
  * Funchook is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
