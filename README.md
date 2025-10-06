@@ -119,19 +119,20 @@ $ make install
 
 ### Windows
 
-Here is an example to compile funchook with Visual Studio 2017 Win64.
-Change the argument of `-G` to use other compilers.
+Here is an example to compile funchook with Visual Studio 2026 targeting x64 architecture.
+Change the argument of `-G` to use other compilers, and the argument of `-A` to select a different architecture.
 
 ```shell
 $ git clone --recursive https://github.com/StackOverflowExcept1on/funchook.git
 $ cd funchook
-$ mkdir build
+$ mkdir -p build
 $ cd build
-$ cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=c:\path\to\install\directory ..
+$ cmake -G "Visual Studio 18 2026" -A x64 -DCMAKE_INSTALL_PREFIX=c:\path\to\install\directory ..
 $ cmake --build . --config Release --target INSTALL
 ```
 
 * Available `-G` arguments (generators) are listed in the output of `cmake --help`.
+* Available `-A` arguments (platform names) are listed in the [generator documentation][].
 * Available `--config` arguments are `Debug`(default), `Release`, `RelWithDebInfo` and `MinSizeRel`.
 * When [`CMAKE_INSTALL_PREFIX`][] isn't set, funchook is installed at `c:\Program Files\funchook`.
 
@@ -278,6 +279,7 @@ itself is under the GPL.
 [Wine]: https://www.winehq.org/
 [`CMAKE_BUILD_TYPE`]: https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html
 [`CMAKE_INSTALL_PREFIX`]: https://cmake.org/cmake/help/latest/variable/CMAKE_INSTALL_PREFIX.html
+[generator documentation]: https://cmake.org/cmake/help/latest/generator/Visual%20Studio%2018%202026.html#platform-selection
 [soname]: https://en.wikipedia.org/wiki/Soname
 [#15]: https://github.com/kubo/funchook/issues/15
 [#19]: https://github.com/kubo/funchook/pull/19
